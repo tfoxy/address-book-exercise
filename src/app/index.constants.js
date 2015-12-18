@@ -4,7 +4,5 @@
 
   angular
     .module('addressBookExercise')
-    .constant('malarkey', malarkey)
-    .constant('moment', moment);
 
 })();
