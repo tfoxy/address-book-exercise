@@ -3,11 +3,18 @@
 
   angular
     .module('addressBookExercise')
-    .run(runBlock);
+    .run(fillRootScope);
 
-  /** @ngInject */
-  function runBlock($log) {
-    $log.debug('runBlock end');
+  function fillRootScope($rootScope, $state, $stateParams, OAuth) {
+    $rootScope.$state = $state;
+    $rootScope.$stateParams = $stateParams;
+
+    $rootScope.$on('$stateChangeStart', function(event, toState) {
+      if (toState.name !== 'app.login' && !OAuth.isAuthenticated()) {
+        event.preventDefault();
+        $state.go('app.login', {errorReason: 'Login required'});
+      }
+    });
   }
 
 })();

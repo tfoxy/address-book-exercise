@@ -3,7 +3,13 @@
 
   angular
     .module('addressBookExercise', [
-      'ui.router'
+      'ui.router',
+      'restangular',
+
+      'addressBookExercise.oauth',
+
+      'addressBookExercise.login',
+      'addressBookExercise.contacts'
     ]);
 
 })();

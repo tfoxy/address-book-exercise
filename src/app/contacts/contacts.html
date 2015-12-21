@@ -1,0 +1,37 @@
+<div class="container">
+
+  <h1>Contacts</h1>
+
+  <div loading-container="vm.tableParams.settings().$loading">
+    <table ng-table="vm.tableParams" class="table table-condensed table-bordered table-striped">
+      <tr ng-repeat="contact in vm.contacts">
+        <td data-title="'Contact'">
+          <nobr><img width="16" height="16" ng-src="{{contact.avatar}}" /> {{contact.name}}
+          </nobr>
+        </td>
+        <td data-title="'Email'">
+          {{contact.email}}
+        </td>
+        <td data-title="'Phone 1'">
+          {{contact.phone1}}
+        </td>
+        <td data-title="'Phone 2'">
+          {{contact.phone2}}
+        </td>
+        <td data-title="'Birthdate'">
+          {{contact.birthdate}}
+        </td>
+        <td data-title="'Address'">
+          {{contact.address}}
+        </td>
+        <td data-title="'State'">
+          {{contact.state.name}}
+        </td>
+        <td data-title="'Country'">
+          {{contact.country.name}}
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</div>

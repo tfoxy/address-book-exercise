@@ -1,21 +1,26 @@
 (function() {
   'use strict';
 
+  var _OAuth_;
+
   angular
     .module('addressBookExercise')
-    .config(routerConfig);
+    .config(routerConfig)
+    .run(routerRun);
 
   /** @ngInject */
-  function routerConfig($stateProvider, $urlRouterProvider) {
-    $stateProvider
-      .state('home', {
-        url: '/',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainController',
-        controllerAs: 'main'
-      });
+  function routerConfig($urlRouterProvider, $stateProvider) {
+    $urlRouterProvider.otherwise(function() {
+      return _OAuth_.isAuthenticated() ? '/contacts' : '/login';
+    });
 
-    $urlRouterProvider.otherwise('/');
+    $stateProvider.state('app', {
+      abstract: true
+    });
+  }
+
+  function routerRun(OAuth) {
+    _OAuth_ = OAuth;
   }
 
 })();
